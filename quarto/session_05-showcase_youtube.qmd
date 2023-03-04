@@ -1,0 +1,155 @@
+---
+title: "Showcase: YouTube Data Tools "
+subtitle: "Digital behavioral data - Session: YouTube "
+author: 
+  - name: Christoph Adrian 
+    url: https://twitter.com/chrdrn
+    affiliation: Lehrstuhl für Kommunikationswissenschaft
+    affiliation-url: https://www.kowi.rw.fau.de/person/christoph-adrian/
+date: 23 11 2022
+date-format: "DD.MM.YYYY"
+format: 
+  html:
+    toc: true
+    toc-depth: 4
+execute: 
+  cache: true
+  eval: true
+  echo: true
+  message: false
+  warning: false
+highlight-style: atom-one
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r Setup local OSF environment}
+#| echo: false
+#| eval: false
+#| message: false
+
+# Load packages
+pacman::p_load(
+  pacman,
+  here, osfr, fs, 
+  tidyverse)
+
+# Get custom functions
+source(here("functions/osf_dependencies.R"))
+
+# Get custom paths
+dirs <- osf_dependencies("05-api_access-youtube")
+
+# Get data
+osf_download(
+  dirs$osf_data_path,
+  path = here(dirs$local_data_path),
+  recurse = TRUE,
+  progress = TRUE
+)
+```
+
+::: callout-tip
+Open this showcase in other interactive and executable environments:
+
+[![Binder](https://mybinder.org/badge_logo.svg){alt="Binder"}](https://mybinder.org/v2/gh/chrdrn/dbd_binder/HEAD) [![Google Colab](https://colab.research.google.com/assets/colab-badge.svg){alt="Google Colab"}](https://colab.research.google.com/github/chrdrn/dbd_binder/blob/main/session_05-showcase_youtube.ipynb)
+:::
+
+## Background
+
+Practical application of the [YouTube Data Tool (YTDT)](https://tools.digitalmethods.net/netvizz/youtube/) using the example of Mai Thi Nguyen-Kim ( [{{< fa brands twitter >}}](https://twitter.com/maithi_nk) \| [{{< fa brands instagram >}}](https://www.instagram.com/maithink/) ) and her [{{< fa brands youtube >}}](https://www.youtube.com/c/maiLab)-Channel [maiLab](https://www.youtube.com/c/maiLab).
+
+## Exercise 1
+
+-   Use the [`Channel Search`](https://tools.digitalmethods.net/netvizz/youtube/mod_channels_search.php) site/function of the `YTDT` to find the (correct) `channel ID` for the <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/youtube.svg" width="15" height="15"/> Channel [maiLab](https://www.youtube.com/c/maiLab).
+-   Therefore, enter "*maiLab*" in the field `Search query` and download the results as `.csv`.
+-   Open the file and search extract the correct channel ID.\
+    *Hint:* If in doubt, use [`Channel Info`](https://tools.digitalmethods.net/netvizz/youtube/mod_channel_info.php) function to check if the selected ID matches the channel description.
+
+```{r}
+# Load packages
+library(here)
+library(readr)
+library(tidyverse)
+
+# Import data
+channel_list <- read_csv(
+  here("content/05-api_access-youtube/data.local/channelsearch_channels50_2022_11_17-09_54_22.csv"))
+
+# Preview data 
+channel_list %>% glimpse()
+```
+
+```{r}
+# Get channel description with R
+channel_list %>%
+  filter(title == "maiLab") %>%
+  select(id, title, description)
+```
+
+## Exercise 2
+
+-   With help of the [`Video List`](https://tools.digitalmethods.net/netvizz/youtube/mod_videos_list.php) site/function of the `YTDT`, get a list of all published videos of the channel `maiLab`.
+-   Therefore, use the extracted `channel id` and download the results as `.csv`.
+-   Import/preview the data.
+
+```{r}
+# Import data: video list
+video_list <- read_csv(
+  here("content/05-api_access-youtube/data.local/videolist_channel186_2022_11_17-10_20_11.csv"))
+
+# Preview data 
+video_list %>% glimpse()
+```
+
+# Exercise 3
+
+-   Perform different explorative data analysis
+
+## Different location parameters
+
+```{r}
+# Load additional packages
+library(sjmisc) 
+
+# Get distribution parameters for selected variables
+video_list %>% 
+  select(durationSec, viewCount, likeCount, favoriteCount, commentCount) %>% 
+  descr()
+
+```
+
+### More detailed distribution for each variable
+
+```{r}
+# Load additional packages
+library(sjPlot) 
+
+# Show distributions for selected variables
+video_list %>% 
+  plot_frq(durationSec, viewCount, likeCount, commentCount, type = "density")
+```
+
+## In-depth analysis
+
+Based on the findings of the previous section, let us take a closer look. Interestingly, although most of the varialbes have a left-sloping distribution, there are isolated outliers on the "right" edge.
+
+Therefore, the next goal is to find out which video(s) they are.
+
+### Top 5 videos with the **highest view count**
+
+```{r}
+video_list %>% 
+  arrange(-viewCount) %>% 
+  select(videoTitle, publishedAt, viewCount, likeCount, commentCount) %>% 
+  head()
+```
+
+### Top 5 videos with the **highest comment count**
+
+```{r}
+video_list %>% 
+  arrange(-commentCount) %>% 
+  select(videoTitle, publishedAt, viewCount, likeCount, commentCount) %>% 
+  head()
+```

@@ -1,3 +1,9 @@
-install.packages(c(
-    "tidyverse",
-    "easystats"))
+install.packages(
+    c(
+        "remotes",
+        "tidyverse",
+        "rmarkdown",
+        "readr",
+        "sjmisc"
+        )
+)
