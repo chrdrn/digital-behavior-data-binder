@@ -4,7 +4,7 @@
 
 
 ## Links
-🔗 to github-repository of the course [`Digital behaviorals data`](https://github.com/chrdrn/digital-behavioral-data)
+🔗 to github-repository of the course [`Digital behavioral data`](https://github.com/chrdrn/digital-behavioral-data)
 
 🔗 to github-page of the course: [https://chrdrn.github.io/digital-behavioral-data/](https://chrdrn.github.io/digital-behavioral-data/)
 
