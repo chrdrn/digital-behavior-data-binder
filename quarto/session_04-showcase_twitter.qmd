@@ -64,7 +64,9 @@ map(zipfiles, unzip, exdir = dirs$local_data_path)
 ::: callout-tip
 Open this showcase in other interactive and executable environments:
 
-[![Binder](https://mybinder.org/badge_logo.svg){alt="Binder"}](https://mybinder.org/v2/gh/chrdrn/dbd_binder/HEAD) [![Google Colab](https://colab.research.google.com/assets/colab-badge.svg){alt="Google Colab"}](https://colab.research.google.com/github/chrdrn/dbd_binder/blob/main/session_05-showcase_youtube.ipynb)
+[![Binder RStudio](https://raw.githubusercontent.com/chrdrn/digital-behavioral-data/main/img/badge_binder-rstudio.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavior-data-binder/HEAD?urlpath=rstudio)
+[![Binder Jupyter](https://raw.githubusercontent.com/chrdrn/digital-behavioral-data/main/img/badge-binder_jupyter.svg){alt="Binder"}](https://mybinder.org/v2/gh/chrdrn/digital-behavior-data-binder/HEAD)
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg){alt="Google Colab"}](https://colab.research.google.com/github/chrdrn/digital-behavior-data-binder/blob/main/session_04-showcase_twitter.ipynb)
 :::
 
 ## Background
@@ -90,6 +92,18 @@ This showcase contains two exemplary uses of the API: Analysis of specific hasht
 ### Load necessary packages
 
 ```{r load packages}
+if(!require("here")) {install.packages("here"); library("here")}
+if(!require("academictwitteR")) {install.packages("academictwitteR"); library("academictwitteR")}
+if(!require("lubridate")) {install.packages("lubridate"); library("lubridate")}
+if(!require("sjmisc")) {install.packages("sjmisc"); library("sjmisc")}
+if(!require("tidyverse")) {install.packages("tidyverse"); library("tidyverse")}
+if(!require("quanteda")) {install.packages("quanteda"); library("quanteda")}
+if(!require("quanteda.textstats")) {install.packages("quanteda.textstats"); library("quanteda.textstats")}
+if(!require("quanteda.textplots")) {install.packages("quanteda.textplots"); library("quanteda.textplots")}
+if(!require("ggthemes")) {install.packages("ggthemes"); library("ggthemes")}
+if(!require("ggpubr")) {install.packages("ggpubr"); library("ggpubr")}
+
+
 library(here) # Easy file path construction
 library(academictwitteR) # Collecting the data
 library(lubridate) # Work with date-times and time-spans
