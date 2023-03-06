@@ -1,7 +1,10 @@
-# Digital Behavioral Data - Binder
+# Digital behavioral data - Binder <a href="https://chrdrn.github.io/digital-behavioral-data"><img src="img/dbd_hex.png" align="right" height="150"/></a>
+
+<!-- badges: start -->
 - Jupyter Notebook + R: [![Binder](img/badge-binder_jupyter.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavioral-data-binder/HEAD)
 - RStudio: [![Binder](img/badge-binder-rstudio.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavioral-data-binder/HEAD?urlpath=rstudio)
 
+<!-- badges: end -->
 
 ## Links
 🔗 to github-repository of the course [`Digital behavioral data`](https://github.com/chrdrn/digital-behavioral-data)
