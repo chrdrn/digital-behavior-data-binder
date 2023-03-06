@@ -1,6 +1,6 @@
 # Digital Behavioral Data - Binder
-- Jupyter Notebook + R: [![Binder](img/badge-binder_jupyter.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavior-data-binder/HEAD)
-- RStudio: [![Binder](img/badge-binder-rstudio.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavior-data-binder/HEAD?urlpath=rstudio)
+- Jupyter Notebook + R: [![Binder](img/badge-binder_jupyter.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavioral-data-binder/HEAD)
+- RStudio: [![Binder](img/badge-binder-rstudio.svg)](https://mybinder.org/v2/gh/chrdrn/digital-behavioral-data-binder/HEAD?urlpath=rstudio)
 
 
 ## Links
